@@ -50,6 +50,22 @@ app.post('/api/games', async (request, response) => {
   }
 });
 
+app.delete('/api/games/:name', async (request, response) => {
+  const serachedGame = request.params.name;
+  const gameCollection = getGamesCollection();
+  const isGameAvailable = await gameCollection.findOne({
+    name: serachedGame,
+  });
+  if (isGameAvailable) {
+    gameCollection.deleteOne(isGameAvailable);
+    response.send(isGameAvailable.name + ' was deleted from the database.');
+  } else {
+    response
+      .status(404)
+      .send('This game is either not released or not in the database.');
+  }
+});
+
 app.get('/', (_req, res) => {
   res.send('Hello World!');
 });
