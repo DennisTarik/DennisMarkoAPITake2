@@ -1,0 +1,19 @@
+### Get all games
+
+GET http://localhost:3000/api/games
+
+### Get a single game
+
+GET http://localhost:3000/api/games/:name
+
+### Post a game
+
+POST http://localhost:3000/api/games
+Content-Type: application/json
+
+{
+  "name": "Zelda breath of the Wild",
+  "year": "2018",
+  "plattform": "Nintendo Switch",
+  "studio": "Nintendo games"
+}
